@@ -9,11 +9,14 @@
             int nVoti=Convert.ToInt32(Console.ReadLine());
             double[] voti = new double[nVoti];
             int[] pesi = new int[nVoti];
+
             CaricaVettori(ref voti, ref pesi);
             StampaVotiPesi(voti, pesi);
+
             Console.WriteLine("stampa dei voti maggiori di 4 in posizione dispari e dei loro relativi pesi");
             StampaVotiDispariMaggiori4(ref voti, ref pesi);
             StampaVotiPesi(voti, pesi);
+
             double max=voti[0];
             double min=voti[0];
             int posmax=0;
@@ -23,6 +26,13 @@
             Console.WriteLine("il valore massimo è: " + max + " con posizione: "+posmax);
             Console.WriteLine("il valore minimo è: " + min + " con posizione: "+posmin);
             StampaVotiPesi(voti, pesi);
+
+            Console.WriteLine("inserisci un voto");
+            double votoUtente=Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("stampa dei voti con un valore +/-0.5 al voto immesso da te");
+            ElencoVotiNellIntorno(ref voti,ref pesi, ref votoUtente);
+            StampaVotiPesi(voti, pesi);
+
         }
         static void StampaVotiPesi(double[] voti, int[] pesi)
         {
@@ -38,7 +48,7 @@
             Random random = new Random();
             for(int i=0; i<pesi.Length;i++)
             {
-                voti[i] = random.Next(1, 11);
+                voti[i] = random.NextDouble()*10+1;
                 pesi[i] = random.Next(0, 101);
             }
         }
@@ -86,6 +96,17 @@
             double media=Sommatoria1/Sommatoria2;
             
             return media;
+        }
+        static void ElencoVotiNellIntorno(ref double[] voti, ref int[] pesi,ref double votoUtente)
+        {
+            for(int i = 0; i < pesi.Length;i++)
+            {
+                if (votoUtente >= voti[i]-0.5 && votoUtente <= voti[i]+0.5)
+                {
+                    Console.Write("Voto: " + voti[i] + " ");
+                    Console.WriteLine("Peso: " + pesi[i]);
+                }
+            }
         }
     }
 }
