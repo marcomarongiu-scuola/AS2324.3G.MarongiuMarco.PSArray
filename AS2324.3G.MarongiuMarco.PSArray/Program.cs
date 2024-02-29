@@ -18,35 +18,41 @@
         static void StampaVotiPesi(double[] voti, int[] pesi)
         {
             Console.WriteLine("Stampa dei voti e dei pesi");
-            foreach (int v in voti)
+            for(int i = 0; i < pesi.Length; i++)
             {
-                Console.Write("Voti: " + voti[v]);
-                Console.WriteLine("Pesi: "+ pesi[v]);
+                Console.Write("Voto: " + voti[i]+" ");
+                Console.WriteLine("Peso: " + pesi[i]);
             }
         }
         static void CaricaVettori(ref double[] voti, ref int[] pesi)
         {
             Random random = new Random();
-            foreach(int v in voti)
+            for(int i=0; i<pesi.Length;i++)
             {
-                voti[v] = random.Next(1, 11);
-                pesi[v] = random.Next(0, 101);
+                voti[i] = random.Next(1, 11);
+                pesi[i] = random.Next(0, 101);
             }
         }
         static void StampaVotiDispariMaggiori4(ref double[] voti, ref int[] pesi)
         {
             bool controlloDispari = true;
-            foreach(int v in voti)
+            for (int i = 0; i < pesi.Length; i++)
             {
                 if (controlloDispari == true)
                 {
-                    if (voti[v] > 4)
+                    if (voti[i] > 4)
                     {
-                        Console.Write("Voto: " + voti[v]);
-                        Console.WriteLine("Peso: " + pesi[v]);
+                        Console.Write("Voto: " + voti[i]+" ");
+                        Console.WriteLine("Peso: " + pesi[i]);
                     }
+                    controlloDispari = false;
                 }
-                controlloDispari = false;
+                else
+                {
+                    controlloDispari = true;
+                }
+                
+                
             }
         }
     }
