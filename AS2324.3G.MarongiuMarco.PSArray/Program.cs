@@ -14,6 +14,15 @@
             Console.WriteLine("stampa dei voti maggiori di 4 in posizione dispari e dei loro relativi pesi");
             StampaVotiDispariMaggiori4(ref voti, ref pesi);
             StampaVotiPesi(voti, pesi);
+            double max=voti[0];
+            double min=voti[0];
+            int posmax=0;
+            int posmin=0;
+            double media = MediaPonderata(ref voti, ref pesi, ref max, ref posmax, ref min, ref posmin);
+            Console.WriteLine("la media ponderata è: "+media);
+            Console.WriteLine("il valore massimo è: " + max + " con posizione: "+posmax);
+            Console.WriteLine("il valore minimo è: " + min + " con posizione: "+posmin);
+            StampaVotiPesi(voti, pesi);
         }
         static void StampaVotiPesi(double[] voti, int[] pesi)
         {
@@ -54,6 +63,29 @@
                 
                 
             }
+        }
+        static double MediaPonderata(ref double[] voti,ref int[] pesi, ref double max, ref int posmax,ref double min, ref int posmin)
+        {
+            double Sommatoria1 = 0;
+            int Sommatoria2=0;
+            for(int i = 0;i < pesi.Length;i++)
+            {
+                Sommatoria1+= voti[i]*pesi[i];
+                Sommatoria2 += pesi[i];
+                if (voti[i] > max)
+                {
+                    max= voti[i];
+                    posmax = i+1;
+                }
+                if (voti[i] < min)
+                {
+                    min= voti[i];
+                    posmin = i+1;
+                }
+            }
+            double media=Sommatoria1/Sommatoria2;
+            
+            return media;
         }
     }
 }
