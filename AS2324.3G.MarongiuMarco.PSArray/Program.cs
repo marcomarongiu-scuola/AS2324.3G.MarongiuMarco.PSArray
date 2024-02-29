@@ -11,6 +11,9 @@
             int[] pesi = new int[nVoti];
             CaricaVettori(ref voti, ref pesi);
             StampaVotiPesi(voti, pesi);
+            Console.WriteLine("stampa dei voti maggiori di 4 in posizione dispari e dei loro relativi pesi");
+            StampaVotiDispariMaggiori4(ref voti, ref pesi);
+            StampaVotiPesi(voti, pesi);
         }
         static void StampaVotiPesi(double[] voti, int[] pesi)
         {
@@ -28,6 +31,22 @@
             {
                 voti[v] = random.Next(1, 11);
                 pesi[v] = random.Next(0, 101);
+            }
+        }
+        static void StampaVotiDispariMaggiori4(ref double[] voti, ref int[] pesi)
+        {
+            bool controlloDispari = true;
+            foreach(int v in voti)
+            {
+                if (controlloDispari == true)
+                {
+                    if (voti[v] > 4)
+                    {
+                        Console.Write("Voto: " + voti[v]);
+                        Console.WriteLine("Peso: " + pesi[v]);
+                    }
+                }
+                controlloDispari = false;
             }
         }
     }
