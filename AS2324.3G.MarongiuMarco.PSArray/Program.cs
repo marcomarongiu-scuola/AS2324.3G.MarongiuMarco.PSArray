@@ -33,6 +33,10 @@
             ElencoVotiNellIntorno(ref voti,ref pesi, ref votoUtente);
             StampaVotiPesi(voti, pesi);
 
+            Console.WriteLine("ordinamento dell'elenco dei voti per voto");
+            OrdinaPerVoto(ref voti, ref pesi);
+            StampaVotiPesi(voti, pesi);
+
         }
         static void StampaVotiPesi(double[] voti, int[] pesi)
         {
@@ -108,5 +112,28 @@
                 }
             }
         }
+        static void OrdinaPerVoto(ref double[] voti, ref int[] pesi)
+        {
+            double temp1;
+            int temp2, min;
+                for (int i = 0; i < pesi.Length - 1; i++)
+                {
+                    min = 1;
+                    for (int j = i + 1; j < pesi.Length; j++)
+                    {
+                        if (voti[j] < voti[min])
+                        {
+                            min = j;
+                        }
+                    }
+                    temp1 =voti[i];
+                    voti[i] = voti[min];
+                    voti[min] = temp1;
+                    temp2 = pesi[i];
+                    pesi[i] = pesi[min];
+                    pesi[min] = temp2;
+                }
+
+            }
+        }
     }
-}
